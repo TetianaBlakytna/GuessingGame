@@ -21,10 +21,6 @@ function compareGuess() {
     );
     return;
   }
-  if (attempts === 3) {
-    console.log("You have used all your attempts!");
-    return;
-  }
   if (userGuess < randomNumber) {
     console.log("It is low number");
   } else if (userGuess > randomNumber) {
@@ -45,6 +41,7 @@ function attemptsAmount() {
   if (attempts === 3 && userGuess !== randomNumber) {
     console.log("You have used all your attempts!");
     gameOver = true;
+    console.log("Game over! Please restart the game.");
   }
 }
 function resetGame() {
