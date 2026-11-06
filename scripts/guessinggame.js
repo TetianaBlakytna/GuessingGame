@@ -6,30 +6,32 @@ document.getElementById("restartGame").addEventListener("click", resetGame);
 let userGuess; //number input by user
 let attempts = 0; //number of attempts made by user
 let gameOver = false; //flag to indicate if the game is over
-
+const resultMessage = document.getElementById("resultMessage");
+const attemptsCounter = document.getElementById("attemptsCounter");
 //create comparing logic
 function compareGuess() {
   if (gameOver) {
-    console.log("Game over! Please refresh the page to play again.");
+    resultMessage.textContent =
+      "Game over! Please refresh the page to play again.";
     document.getElementById("guessInput").value = "";
     return;
   }
   userGuess = parseInt(document.getElementById("guessInput").value);
   if (userGuess < 1 || userGuess > 100) {
-    console.log(
-      "Invalid number. Please provide a valid number between 1 and 100",
-    );
+    resultMessage.textContent =
+      "Invalid number. Please provide a valid number between 1 and 100";
     return;
   }
   if (userGuess < randomNumber) {
-    console.log("It is low number");
+    resultMessage.textContent = "Your number is too low!";
   } else if (userGuess > randomNumber) {
-    console.log("It is high number");
+    resultMessage.textContent = "Your number is too high!";
   } else if (userGuess === randomNumber) {
-    console.log("You guessed it right!");
+    resultMessage.textContent = "You guessed it right!";
     gameOver = true;
   } else {
-    console.log("Please provide a valid number between 1 and 100");
+    resultMessage.textContent =
+      "Please provide a valid number between 1 and 100";
     return;
   }
   attemptsAmount();
@@ -37,17 +39,17 @@ function compareGuess() {
 
 function attemptsAmount() {
   attempts++;
-  console.log(`You have used ${attempts} attempts.`);
+  attemptsCounter.textContent = "You have used " + attempts + " attempts.";
   if (attempts === 3 && userGuess !== randomNumber) {
-    console.log("You have used all your attempts!");
+    attemptsCounter.textContent = "You have used all your attempts!";
     gameOver = true;
-    console.log("Game over! Please restart the game.");
+    resultMessage.textContent = "Game over! Please restart the game.";
   }
 }
 function resetGame() {
   randomNumber = Math.floor(Math.random() * 100) + 1;
   attempts = 0;
   gameOver = false;
-  console.log("New game started!");
+  resultMessage.textContent = "New game started!";
   document.getElementById("guessInput").value = "";
 }
