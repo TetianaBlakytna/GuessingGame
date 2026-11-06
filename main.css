@@ -35,6 +35,10 @@ button{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
+}
+button:hover {
+    background-color: #6e2060;
 }
 input[type="number"]{
     width: 100%;
